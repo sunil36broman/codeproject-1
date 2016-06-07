@@ -1,0 +1,68 @@
+<section class="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="boxed-manager">
+                    <div class="boxed-manager-menu">
+                        <ul class="boxed-manager-menu-nav">
+                            <li class="boxed-manager-menu-nav-header">
+                                <h3 class="h4">
+                                    Projetos
+
+                                    <div class="btn-group pull-right">
+                                        <a href="" class="btn btn-primary btn-sm text-upper">
+                                            <small>Ver todos</small>
+                                        </a>
+                                        <a href="" class="btn btn-default btn-sm">
+                                            <i class="fa fa-plus"></i>
+                                        </a>
+                                    </div>
+                                </h3>
+                            </li>
+                            <li class="boxed-manager-menu-nav-item" ng-repeat="project in projects">
+                                <a href="javascript:void(0)" ng-click="showTask(project)">
+                                    <header>
+                                        <h4 class="h4 text-boulder">{{project.name}}</h4>
+                                        <small class="text-upper text-silver">{{project.client.data.name}}</small>
+                                    </header>
+                                    <p class="text-danger status">
+                                        <i class="fa fa-circle"></i> {{project.status | statusProject}}
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="boxed-manager-main boxed-manager-main-xlg">
+                        <div class="boxed-manager-main-header">
+                            <h4 class="h4">
+                                Nome do projeto <small>(90%)</small>
+
+                                <div class="btn-group pull-right">
+                                    <a href="" class="btn btn-default btn-xs" title="Editar">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                    <a href="" class="btn btn-danger btn-xs" title="Apagar">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </div>
+                            </h4>
+                        </div>
+                        <div class="boxed-manager-main-body">
+                            <div class="task-list">
+                                <h6 class="task-list-title">Requirements:</h6>
+                                <ul class="task-list-body">
+                                    <li ng-repeat="task in project.tasks.data">
+                                        <label>
+                                            <input type="checkbox" name="" id=""/>
+                                            {{task.name}}
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

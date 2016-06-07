@@ -1,0 +1,10 @@
+resources/bower_components
+/public/bower_components
+/vendor
+/node_modules
+Homestead.yaml
+.env
+.idea
+npm-debug.log
+composer.lock
+/public/build

@@ -1,0 +1,40 @@
+<form class="form-horizontal" role="form" name="form">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+    <div class="form-group" ng-class="{'has-error': !form.username.$valid && form.username.$touched}">
+        <label class="col-md-4 control-label">E-Mail Address</label>
+        <div class="col-md-6">
+            <input type="email" class="form-control" name="username" ng-model="authentication.username" required>
+            <div ng-messages="form.username.$error" class="help-block" ng-show="form.username.$touched">
+                <div ng-message="required">Campo obrigatorio</div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': !form.password.$valid && form.password.$touched}">
+        <label class="col-md-4 control-label">Password</label>
+        <div class="col-md-6">
+            <input type="password" class="form-control" name="password" ng-model="authentication.password" required>
+            <div ng-messages="form.password.$error" class="help-block" ng-show="form.password.$touched">
+                <div ng-message="required">Campo obrigatorio</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-6 col-md-offset-4">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="remember"> Remember Me
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-6 col-md-offset-4">
+            <button ng-click="login(authentication)" class="btn btn-primary">Login</button>
+        </div>
+    </div>
+</form>

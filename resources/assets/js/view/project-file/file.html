@@ -1,0 +1,29 @@
+<div class="container">
+    <h2>Listagem de arquivos de project</h2>
+
+    <a href="#/project/{{project}}/file/new" class="btn btn-primary">Novo</a>
+
+    <br/>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>name</th>
+            <th>description</th>
+            <th>link</th>
+            <th>Acoes</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="file in projectFiles">
+                <td>{{file.name}}</td>
+                <td>{{file.description}}</td>
+                <td><project-file-download id-projectid="{{file.project_id}}" id-file="{{file.id}}"></project-file-download></td>
+                <td>
+                    <a ng-href="#/project/{{file.project_id}}/file/{{file.id}}/edit">Editar</a>|
+                    <a ng-href="#/project/{{file.project_id}}/file/{{file.id}}/remove">Excluir</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

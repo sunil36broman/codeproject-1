@@ -1,0 +1,60 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="panel panel-default">
+				<div class="panel-heading">{{title}}</div>
+				<div class="panel-body">
+
+					<div class="alert alert-danger" ng-show="error.error">
+						<strong>Whoops!</strong> Ocorreram erros<br><br>
+						<div>{{error.message}}</div>
+					</div>
+
+					<form class="form-horizontal" role="form" name="form" >
+
+						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+						<div class="form-group" ng-class="{'has-error': !form.project_id.$valid && form.project_id.$touched}">
+							<label class="col-md-4 control-label">Projeto</label>
+							<div class="col-md-6">
+								<select ng-model="note.project_id" ng-options="project.id as project.name for project in projects|orderBy:'name' " class="form-control" required></select>
+								<div ng-messages="form.project_id.$error" class="help-block" ng-show="form.project_id.$touched">
+									<div ng-message="required">Campo obrigatorio</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group" ng-class="{'has-error': !form.title.$valid && form.title.$touched}">
+							<label class="col-md-4 control-label">Titulo</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="name" ng-model="note.title" required>
+								<div ng-messages="form.title.$error" class="help-block" ng-show="form.title.$touched">
+									<div ng-message="required">Campo obrigatorio</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group" ng-class="{'has-error': !form.note.$valid && form.note.$touched}">
+							<label class="col-md-4 control-label">Nota</label>
+							<div class="col-md-6">
+								<!--<input type="text" class="form-control" name="note" ng-model="note.note" required> -->
+								<textarea cols="50" rows="8" class="form-control" name="note" ng-model="note.note" required></textarea>
+								<div ng-messages="form.note.$error" class="help-block" ng-show="form.note.$touched">
+									<div ng-message="required">Campo obrigatorio</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-md-6 col-md-offset-4">
+								<button type="submit" ng-click="save(note)" class="btn btn-primary">{{action_button}}</button>
+								<a href="#/note"class="btn btn-primary">Voltar</a>
+							</div>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

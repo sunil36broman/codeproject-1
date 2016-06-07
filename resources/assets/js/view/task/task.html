@@ -1,0 +1,49 @@
+<div class="container">
+
+    <h2>Tarefas</h2>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <form class="form-inline" role="form" name="form" >
+                <div class="form-group">
+                    <input type="text" class="form-control" name="name" ng-model="projectTask.name" required>
+                    <div ng-messages="form.name.$error" class="help-block" ng-show="form.name.$touched">
+                        <div ng-message="required">Campo obrigatorio</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" ng-click="save(projectTask)" class="btn btn-primary">Salvar</button>
+                    <a href="#/task/{{project}}/new" class="btn btn-primary">Novo</a>
+                </div>
+            </form>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Projeto</th>
+                    <th>Nome</th>
+                    <th>Start</th>
+                    <th>Due</th>
+                    <th>Acoes</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="task in tasks">
+                    <td>{{task.id}}</td>
+                    <td>{{task.project_id}}</td>
+                    <td>{{task.name}}</td>
+                    <td>{{task.start_date | dateBr}}</td>
+                    <td>{{task.due_date | dateBr}}</td>
+                    <td>
+                        <a ng-href="#/project/{{task.project_id}}/task/{{task.id}}/edit">Editar</a>|
+                        <a ng-href="#/project/{{task.project_id}}/task/{{task.id}}/remove">Excluir</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,89 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="panel panel-default">
+				<div class="panel-heading">{{title}}</div>
+				<div class="panel-body">
+
+					<div class="alert alert-danger" ng-show="error.error">
+						<strong>Whoops!</strong> Ocorreram erros<br><br>
+						<div>{{error.message}}</div>
+					</div>
+
+					<form class="form-horizontal" role="form" name="form" >
+
+						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+						<div class="form-group" ng-class="{'has-error': !form.name.$valid && form.name.$touched}">
+							<label class="col-md-4 control-label">Nome</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="name" ng-model="client.name" required>
+								<div ng-messages="form.name.$error" class="help-block" ng-show="form.name.$touched">
+									<div ng-message="required">Campo obrigatorio</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group" ng-class="{'has-error': !form.responsabible.$valid && form.responsabible.$touched}">
+							<label class="col-md-4 control-label">Responsavel</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="responsabible" ng-model="client.responsabible" required>
+								<div ng-messages="form.responsabible.$error" class="help-block" ng-show="form.responsabible.$touched">
+									<div ng-message="required">Campo obrigatorio</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group" ng-class="{'has-error': !form.email.$valid && form.email.$touched}">
+							<label class="col-md-4 control-label">E-Mail</label>
+							<div class="col-md-6">
+								<input type="email" class="form-control" name="email" ng-model="client.email" required>
+								<div ng-messages="form.email.$error" class="help-block" ng-show="form.email.$touched">
+									<div ng-message="required">Campo obrigatorio</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group" ng-class="{'has-error': !form.phone.$valid && form.phone.$touched}">
+							<label class="col-md-4 control-label">Telefone</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="phone" ng-model="client.phone" required>
+								<div ng-messages="form.phone.$error" class="help-block" ng-show="form.phone.$touched">
+									<div ng-message="required">Campo obrigatorio</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group" ng-class="{'has-error': !form.address.$valid && form.address.$touched}">
+							<label class="col-md-4 control-label">Endere?o</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="address" ng-model="client.address" required>
+								<div ng-messages="form.address.$error" class="help-block" ng-show="form.address.$touched">
+									<div ng-message="required">Campo obrigatorio</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group" ng-class="{'has-error': !form.obs.$valid && form.obs.$touched}">
+							<label class="col-md-4 control-label">Observa??o</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="obs" ng-model="client.obs" required>
+								<div ng-messages="form.obs.$error" class="help-block" ng-show="form.obs.$touched">
+									<div ng-message="required">Campo obrigatorio</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-md-6 col-md-offset-4">
+								<button type="submit" ng-click="save(client)" class="btn btn-primary">{{action_button}}</button>
+								<a href="#/client"class="btn btn-primary">Voltar</a>
+							</div>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

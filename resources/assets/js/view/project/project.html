@@ -1,0 +1,35 @@
+<div class="container">
+    <h2>Projetos</h2>
+
+    <a href="#/project/new" class="btn btn-primary">Novo</a>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Descricao</th>
+            <th>Status</th>
+            <th>Data</th>
+            <th class="text-center">Acoes</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr dir-paginate="project in projects | itemsPerPage: projectsPerPage" total-items="totalProjects" current-page="pagination.current">
+                <td>{{project.id}}</td>
+                <td>{{project.name}}</td>
+                <td>{{project.description}}</td>
+                <td>{{project.status}}</td>
+                <td>{{project.due_date | dateBr}}</td>
+                <td>
+                    <a ng-href="#/project/{{project.id}}/file">Files</a>|
+                    <a ng-href="#/project/{{project.id}}/tasks">Tarefas</a>|
+                    <a ng-href="#/project/{{project.id}}/notes">Notas</a>|
+                    <a ng-href="#/project/{{project.id}}/edit">Editar</a>|
+                    <a ng-href="#/project/{{project.id}}/remove">Excluir</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
+</div>

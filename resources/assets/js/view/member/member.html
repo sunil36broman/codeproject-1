@@ -1,0 +1,38 @@
+<div class="container">
+    <h2>Membros</h2>
+
+    <h3>Selecione um projeto para visualizar seus membros</h3>
+
+    <a href="#/project/{{member.project_id}}/member/new" class="btn btn-primary">Novo</a>
+
+    <br/>
+    <br/>
+    <div class="form-group">
+        <label class="col-md-12 control-label">Projeto</label>
+        <div class="col-md-12">
+            <select name="project" ng-change="loadMembers(member.project_id)" ng-model="member.project_id" ng-options="project.id as project.name for project in projects|orderBy:'name' " class="form-control" required></select>
+        </div>
+    </div>
+    <br/>
+
+    <table class="table" ng-show="show">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Projeto</th>
+            <th>Usuario</th>
+            <th>Acoes</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="member in members">
+                <td>{{member.id}}</td>
+                <td>{{project.name}}</td>
+                <td>{{member.name}}</td>
+                <td>
+                    <a ng-href="#/project/{{project_id}}/member/{{member.id}}/remove">Excluir</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

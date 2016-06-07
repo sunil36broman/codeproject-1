@@ -1,0 +1,174 @@
+<section class="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="boxed-manager">
+                    <div class="boxed-manager-menu">
+                        <ul class="boxed-manager-menu-nav">
+                            <li class="boxed-manager-menu-nav-header">
+                                <h3 class="h4">
+                                    Projetos
+
+                                    <div class="btn-group pull-right">
+                                        <a href="#/project" class="btn btn-primary btn-sm text-upper">
+                                            <i class="fa fa-align-justify"></i>
+                                        </a>
+                                        <a href="#/project/new" class="btn btn-default btn-sm">
+                                            <i class="fa fa-plus"></i>
+                                        </a>
+                                    </div>
+                                </h3>
+                            </li>
+                            <li class="boxed-manager-menu-nav-item" ng-repeat="project in projects">
+                                <a href="javascript:void(0)" ng-click="showProject(project)">
+                                    <header>
+                                        <h4 class="h4 text-boulder">{{project.name}}</h4>
+                                        <small class="text-upper text-silver">{{project.client.data.name}}</small>
+                                    </header>
+                                    <p class="text-danger status">
+                                        <i class="fa fa-circle"></i> {{project.status | statusProject}}
+                                    </p>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="boxed-manager-main arrow">
+                        <div class="boxed-manager-main-header">
+                            <h4 class="h4">
+                                Nome do projeto <small>(90%)</small>
+
+                                <div class="btn-group pull-right">
+                                    <a href="#/project/{{project.id}}/edit" class="btn btn-default btn-xs" title="Editar">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                    <a href="#/project/{{project.id}}/remove" class="btn btn-danger btn-xs" title="Apagar">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </div>
+                            </h4>
+                        </div>
+                        <div class="boxed-manager-main-body" >
+                            <div class="btn-group" role="tablist" tab-project>
+                                <a href=""
+                                   aria-controls="detalhes"
+                                   role="tab"
+                                   data-toggle="tab"
+                                   class="btn btn-default active">
+                                    Detalhes
+                                </a>
+                                <a href=""
+                                   aria-controls="tarefas"
+                                   role="tab"
+                                   data-toggle="tab"
+                                   class="btn btn-default">
+                                    Tarefas
+                                </a>
+                                <a href=""
+                                   aria-controls="arquivos"
+                                   role="tab"
+                                   data-toggle="tab"
+                                   class="btn btn-default">
+                                    Arquivos
+                                </a>
+                                <a href=""
+                                   aria-controls="anotacoes"
+                                   role="tab"
+                                   data-toggle="tab"
+                                   class="btn btn-default">
+                                    Anotações
+                                </a>
+                            </div>
+
+                            <br/>
+                            <br/>
+
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="detalhes">
+                                    <p>{{project.description}}</p>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="tarefas">
+                                    <div class="task-list">
+                                        <h6 class="task-list-title">Requirements:</h6>
+                                        <ul class="task-list-body">
+                                            <li ng-repeat="task in project.tasks.data">
+                                                <label>
+                                                    <input type="checkbox" name="" id=""/>
+                                                    {{task.name}}
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="arquivos">
+                                    <div class="files-list-blocks" ng-repeat="file in project.files.data">
+                                        <project-file-download id-projectid="{{file.project_id}}" id-file="{{file.id}}"></project-file-download>
+                                    </div>
+                                    <a href="" class="avatar avatar-xs">
+                                        <img src="build/images/avatar.png" alt=""/>
+                                    </a>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="anotacoes">
+                                    <div class="notes-list" ng-repeat="note in project.notes.data">
+                                        <div class="notes-list-item note-type-status-changed">
+                                            <h3>{{note.title}}</h3>
+                                        </div> <!-- /notes-list-item -->
+                                        <div class="notes-list-item note-type-message">
+                                            <div class="notes-list-body">
+                                                <p class="notes-list-body-content">
+                                                    {{note.note}}
+                                                </p>
+                                            </div>
+                                        </div> <!-- /notes-list-item -->
+                                    </div> <!-- /notes-list -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="boxed-manager-info">
+                        <div class="boxed-manager-info-header">
+                            <h4 class="h4">Estatísticas do projeto</h4>
+                        </div>
+                        <div class="boxed-manager-info-body">
+                            <div class="boxed-manager-info-body-chart text-center">
+                                <div class="radial-progress radial-progress-lg radial-progress-danger" data-progress="{{project.progress}}">
+                                    <div class="circle">
+                                        <div class="mask full">
+                                            <div class="fill"></div>
+                                        </div>
+                                        <div class="mask half">
+                                            <div class="fill"></div>
+                                            <div class="fill fix"></div>
+                                        </div>
+                                        <div class="shadow"></div>
+                                    </div>
+                                    <div class="inset">
+                                        <div class="percentage">
+                                            <div class="numbers">{{project.progress}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                Progresso esperado: 100%
+                            </div>
+                            <ul class="list-styled">
+                                <li class="list-styled-header text-upper text-center">
+                                    Cliente
+                                </li>
+                                <li class="text-center text-silver">{{project.client.data.name}}</li>
+                                <li class="list-styled-header text-upper text-center">
+                                    Data de entrega
+                                </li>
+                                <li class="text-center text-silver">{{project.due_date | dateBr}}</li>
+                                <li class="list-styled-header text-upper text-center">
+                                    Tarefas ({{project.task_count}})
+                                </li>
+                                <li class="text-center text-silver">{{project.tasks_opened}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
